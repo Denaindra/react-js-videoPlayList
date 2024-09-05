@@ -1,30 +1,51 @@
 import React, { useState } from 'react'
 import ReactPlayer from 'react-player'
+import { CSSTransition } from 'react-transition-group';
+import './VideoPlayer.css'
 
+
+const videoList = [
+    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+    // Add more video URLs here
+  ];
+
+  
 export default function VideoPlayer() {
-    const [playing, setPlaying] = useState(true); // play and pause the video
-
-
-    const handleProgress = (progress) => {
-        console.log('IsPlaying: ',playing,' Played: ', progress.played , ' Played Seconds:', progress.playedSeconds, ' Loaded Seconds:', progress.loadedSeconds); // Percentage of video played
-       
-    //     if(progress.playedSeconds > 6 ){ // 6s is the place that questions is comming
-    //      setPlaying(false)
-    //    }  
+    const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+    const [showPlayer, setShowPlayer] = useState(true);
+  
+    // Handle video end event
+    const handleVideoEnd = () => {
+      // Trigger exit animation before switching videos
+      setShowPlayer(false);
+  
+      // Wait for the exit animation to finish (500ms in this case) and switch video
+      setTimeout(() => {
+        setCurrentVideoIndex((prevIndex) =>
+          prevIndex === videoList.length - 1 ? 0 : prevIndex + 1
+        );
+        setShowPlayer(true); // Trigger enter animation
+      }, 500); // This matches the duration of the exit animation
     };
-
-  return (
-    <div>VideoPlayer12
-        <ReactPlayer 
-      url={'assets/Download.mp4'}
-      controls={false}
-      height="60%"
-      width="10%"
-      playing={playing} //deafult it's false
-      muted = {true}
-      onError={e => console.log('onError [ReactPlayer]', e)}
-      onProgress={handleProgress}
-    />
-    </div>
-  )
+  
+    return (
+      <div className="video-container">
+        <CSSTransition
+          in={showPlayer}
+          timeout={500}
+          classNames="video-fade"
+          unmountOnExit
+        >
+          <ReactPlayer
+            url={videoList[currentVideoIndex]}
+            controls={true}
+            playing={true}
+            width="100%"
+            height="100%"
+            onEnded={handleVideoEnd}
+          />
+        </CSSTransition>
+      </div>
+    )
 }
