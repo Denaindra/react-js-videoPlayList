@@ -1,50 +1,30 @@
 import React, { useState } from 'react'
 import ReactPlayer from 'react-player'
-import { CSSTransition } from 'react-transition-group';
-import './VideoPlayer.css';
-
-
-const videoList = [
-  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
-  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
-  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4'
-];
 
 export default function VideoPlayer() {
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const [showPlayer, setShowPlayer] = useState(true);
+    const [playing, setPlaying] = useState(true); // play and pause the video
 
-  // Handle video end event
-  const handleVideoEnd = () => {
-    setShowPlayer(false); // Trigger exit animation
 
-    // Wait for animation to finish (500ms) and switch video
-    setTimeout(() => {
-      setCurrentVideoIndex((prevIndex) =>
-        prevIndex === videoList.length - 1 ? 0 : prevIndex + 1
-      );
-      setShowPlayer(true); // Trigger enter animation
-    }, 500); // Matches the duration of the exit animation
-  };
+    const handleProgress = (progress) => {
+        console.log('IsPlaying: ',playing,' Played: ', progress.played , ' Played Seconds:', progress.playedSeconds, ' Loaded Seconds:', progress.loadedSeconds); // Percentage of video played
+       
+    //     if(progress.playedSeconds > 6 ){ // 6s is the place that questions is comming
+    //      setPlaying(false)
+    //    }  
+    };
 
   return (
-    <div className="video-container">
-      <CSSTransition
-        in={showPlayer}
-        timeout={500}
-        classNames="video-slide"
-        unmountOnExit
-      >
-        <ReactPlayer
-          url={videoList[currentVideoIndex]}
-          controls={true}
-          playing={true}
-          width="100%"
-          height="100vh"
-          onEnded={handleVideoEnd}
-        />
-      </CSSTransition>
+    <div>VideoPlayer12
+        <ReactPlayer 
+      url={'assets/Download.mp4'}
+      controls={false}
+      height="60%"
+      width="10%"
+      playing={playing} //deafult it's false
+      muted = {true}
+      onError={e => console.log('onError [ReactPlayer]', e)}
+      onProgress={handleProgress}
+    />
     </div>
-  );
+  )
 }
