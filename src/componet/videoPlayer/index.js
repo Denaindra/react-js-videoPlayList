@@ -8,16 +8,16 @@ export default function VideoPlayer() {
     const handleProgress = (progress) => {
         console.log('IsPlaying: ',playing,' Played: ', progress.played , ' Played Seconds:', progress.playedSeconds, ' Loaded Seconds:', progress.loadedSeconds); // Percentage of video played
        
-    //     if(progress.playedSeconds > 6 ){ // 6s is the place that questions is comming
-    //      setPlaying(false)
-    //    }  
+        if(progress.playedSeconds > 1.4 ){ // 6s is the place that questions is comming
+         setPlaying(false)
+       }  
     };
 
   return (
     <div>VideoPlayer12
         <ReactPlayer 
-      url={'assets/Download.mp4'}
-      controls={false}
+      url={'assets/videoAssets/0921.mov'}
+      controls={true}
       height="60%"
       width="10%"
       playing={playing} //deafult it's false
