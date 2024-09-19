@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import "./videoPlayer.css";
+import "./videobuttonSets.css";
 
 export default function VideoPlayer() {
   const [playing, setPlaying] = useState(true); // play and pause the video
@@ -45,6 +46,13 @@ export default function VideoPlayer() {
           onError={(e) => console.log("onError [ReactPlayer]", e)}
           onProgress={handleProgress}
         />
+        <div style={{ display:'flex', flexDirection:'column',position:"absolute", bottom: '15vh', left:0, right:0}}>
+            <p style={{ fontWeight: '700',textAlign:'center', padding:"10px" }}>Hmmm Virate kole gone now with buha buha buha _______ </p>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', gap:"10%"}}>
+                <button type="button" className="btn btn-2 btn-2b"  >Witcket</button>
+                <button type="button" className="btn btn-2 btn-2b" >Catch</button>
+            </div>
+        </div>
     </div>
   );
 }
