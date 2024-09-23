@@ -1,4 +1,4 @@
-export async function GetMeetingList() {
+export async function GetVideoListItems() {
     try {
       const response = await fetch("assets/indexPanel/ashes-2019.json");
       const data = await response.json();

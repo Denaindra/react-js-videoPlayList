@@ -1,22 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactPlayer from "react-player";
 import "./videoPlayer.css";
 import "./videobuttonSets.css";
-import { GetMeetingList } from "../helperFunction/filehandler";
+import { GetVideoListItems } from "../helperFunction/filehandler";
 
 export default function VideoPlayer() {
   const [playing, setPlaying] = useState(true); // play and pause the video
 
+  const [videoArray, setVideoArray] = useState([]); // play and pause the video
+  const videoIndex = useRef(0);  // keep the video index
+
   useEffect(() => {
+    console.log("app loaded")
     // Disable scrolling when the component is mounted
     document.body.style.overflow = "hidden";
     async function fetchMeetings() {
       try {
-        var results = await GetMeetingList();
-        console.log("test 123",results);
+         var videoCollection = await GetVideoListItems();
+         setVideoArray(videoCollection);
       } 
       catch (err) {
-
+        console.log("onError [GetVideoListItems] ", err)
       } 
     }
     return () => {
@@ -38,16 +42,18 @@ export default function VideoPlayer() {
       progress.loadedSeconds
     ); // Percentage of video played
 
-    if (progress.playedSeconds > 1.4) {
+    if (progress.playedSeconds > videoArray[videoIndex.current].pauseIndex) {
       // 6s is the place that questions is comming
       setPlaying(false);
     }
   };
 
-  return (
+  return ( 
     <div>
-      <ReactPlayer
-        url={"assets/videoAssets/0921.mov"}
+      { videoArray !== 'undefined' & videoArray.length > 0 ? ( 
+        <>
+           <ReactPlayer
+        url={"assets/videoAssets/"+videoArray[videoIndex.current].videoId}
         controls={true}
         height="100vh"
         width="100vw"
@@ -76,7 +82,7 @@ export default function VideoPlayer() {
             color: "white",
           }}
         >
-          Hmmm Virate kole gone now with buha buha buha _______{" "}
+          {videoArray[videoIndex.current].question}
         </p>
         <div
           style={{
@@ -87,13 +93,17 @@ export default function VideoPlayer() {
           }}
         >
           <button type="button" className="btn btn-2 btn-2b">
-            Witcket
+            {videoArray[videoIndex.current].yes}
           </button>
           <button type="button" className="btn btn-2 btn-2b">
-            Catch
+          {videoArray[videoIndex.current].no}
           </button>
         </div>
-      </div>
+      </div> 
+          </>
+      ) : (
+        <p>Loading...</p> // Handle case where data is not yet available}
+      )}
     </div>
   );
 }
