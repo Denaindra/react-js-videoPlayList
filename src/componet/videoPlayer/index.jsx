@@ -8,7 +8,7 @@ import { GetVideoListItems } from "../helperFunction/filehandler";
 
 export default function VideoPlayer() {
   const [playing, setPlaying] = useState(true); // play and pause the video
-
+  const playerRef = useRef(null); // replay 
   const [videoArray, setVideoArray] = useState([]); // play and pause the video
   const videoIndex = useRef(0);  // keep the video index
 
@@ -50,14 +50,19 @@ export default function VideoPlayer() {
     }
   };
  const replayVideo = () =>{
-  alert("hello");
+   setPlaying(false); // Set playing state to false when paused
+    playerRef.current.seekTo(0); // Seek to the start
+    setPlaying(true); // Set playing state back to true to replay
  }
+
+ 
   return (
     <div>
       {(videoArray !== "undefined") & (videoArray.length > 0) ? (
         <>
           <ReactPlayer
             url={"assets/videoAssets/" + videoArray[videoIndex.current].videoId}
+            ref={playerRef}
             controls={false}
             height="100vh"
             width="100vw"
