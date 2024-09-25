@@ -1,62 +1,62 @@
 [
 	{
 		"backgroundColor": "#ff5733",
-		"yes": "yes",
-        "no":"no",
+		"yes": "LBW",
+        "no":"Bowled",
         "Id":0,
         "correctAnzwer":1,
-        "question":"what is the correct asnwer of the here",
+        "question":"Player will be gone LBW or Bowled?",
         "videoId":"0916.mov",
-        "pauseIndex":2.34
+        "pauseIndex":6.8
 	},
 	{
 		"backgroundColor": "#ff5733",
-		"yes": "yes",
-        "no":"no",
+		"yes": "LBW",
+        "no":"Caught",
         "Id":1,
-        "correctAnzwer":1,
-        "question":"what is the correct asnwer of the here",
+        "correctAnzwer":2,
+        "question":"Player will be gone LBW or Caught?  ",
         "videoId":"0917.mov",
-        "pauseIndex":2.34
+        "pauseIndex":8.0
 	},
     {
 		"backgroundColor": "#ff5733",
-		"yes": "yes",
-        "no":"no",
+		"yes": "High catch",
+        "no":"Slip catch",
         "Id":2,
-        "correctAnzwer":1,
-        "question":"what is the correct asnwer of the here",
+        "correctAnzwer":2,
+        "question":"Will it be a High catch or a Slip catch? ",
         "videoId":"0918.mov",
-        "pauseIndex":2.34
+        "pauseIndex":4.8
 	},
     {
 		"backgroundColor": "#ff5733",
-		"yes": "yes",
-        "no":"no",
+		"yes": "LBW",
+        "no":"Blowed",
         "Id":3,
-        "correctAnzwer":1,
-        "question":"what is the correct asnwer of the here",
+        "correctAnzwer":2,
+        "question":"Is this LBW or Blowed?",
         "videoId":"0919.mov",
-        "pauseIndex":2.34
+        "pauseIndex":3.9
 	},
     {
 		"backgroundColor": "#ff5733",
-		"yes": "yes",
-        "no":"no",
+		"yes": "6 runs",
+        "no":"Slip Catch",
         "Id":4,
-        "correctAnzwer":1,
-        "question":"what is the correct asnwer of the here",
+        "correctAnzwer":2,
+        "question":"Is this 6 runs or a Slip catch?",
         "videoId":"0920.mov",
-        "pauseIndex":2.34
+        "pauseIndex":4.8
 	},
     {
 		"backgroundColor": "#ff5733",
-		"yes": "yes",
-        "no":"no",
+		"yes": "LBW",
+        "no":"High catch",
         "Id":5,
-        "correctAnzwer":1,
-        "question":"what is the correct asnwer of the here",
+        "correctAnzwer":2,
+        "question":"Is this LBW or High catch? ",
         "videoId":"0921.mov",
-        "pauseIndex":2.34
+        "pauseIndex":2.8
 	}
 ]
