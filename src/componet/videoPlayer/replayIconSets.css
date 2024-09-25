@@ -1,0 +1,31 @@
+.replay-icon-button {
+    display: flex;
+    flex-direction: column; /* Puts icon above the text */
+    align-items: center;    /* Centers icon and text horizontally */
+    justify-content: center;
+    background-color: transparent; /* Button background */
+    color: white;              /* Button text color */
+    font-family: inherit;
+    font-size: 13px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  /* Style the image */
+  .icon-img {
+    width: 25px;  /* Adjust the size of the PNG icon */
+    height: 25px;
+    margin-bottom: 5px; /* Space between icon and text */
+  }
+
+  .replay-container {
+    position: absolute;
+    top: 0px; /* Adjust this value to control how far from the top */
+    left: 50%;
+    transform: translateX(-50%); /* This centers the div horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }

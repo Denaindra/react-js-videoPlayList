@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import ReactPlayer from "react-player";
 import "./videoPlayer.css";
 import "./videobuttonSets.css";
+import "./replayIconSets.css";
+
 import { GetVideoListItems } from "../helperFunction/filehandler";
 
 export default function VideoPlayer() {
@@ -47,60 +49,69 @@ export default function VideoPlayer() {
       setPlaying(false);
     }
   };
-
-  return ( 
+ const replayVideo = () =>{
+  alert("hello");
+ }
+  return (
     <div>
-      { videoArray !== 'undefined' & videoArray.length > 0 ? ( 
+      {(videoArray !== "undefined") & (videoArray.length > 0) ? (
         <>
-           <ReactPlayer
-        url={"assets/videoAssets/"+videoArray[videoIndex.current].videoId}
-        controls={true}
-        height="100vh"
-        width="100vw"
-        className="react-player"
-        playing={playing} //deafult it's false
-        muted={true}
-        onError={(e) => console.log("onError [ReactPlayer]", e)}
-        onProgress={onProgressHandler}
-      />
-      <div
-        style={{
-          display: "flex",
-          backgroundImage: "linear-gradient(#000000D8, transparent)",
-          flexDirection: "column",
-          position: "absolute",
-          bottom: "15vh",
-          left: 0,
-          right: 0,
-        }}
-      >
-        <p
-          style={{
-            fontWeight: "700",
-            textAlign: "center",
-            padding: "0px 5px 0px 5px",
-            color: "white",
-          }}
-        >
-          {videoArray[videoIndex.current].question}
-        </p>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            gap: "10%",
-          }}
-        >
-          <button type="button" className="btn btn-2 btn-2b">
-            {videoArray[videoIndex.current].yes}
-          </button>
-          <button type="button" className="btn btn-2 btn-2b">
-          {videoArray[videoIndex.current].no}
-          </button>
-        </div>
-      </div> 
-          </>
+          <ReactPlayer
+            url={"assets/videoAssets/" + videoArray[videoIndex.current].videoId}
+            controls={false}
+            height="100vh"
+            width="100vw"
+            className="react-player"
+            playing={playing} //deafult it's false
+            muted={true}
+            onError={(e) => console.log("onError [ReactPlayer]", e)}
+            onProgress={onProgressHandler}
+          />
+          <div className="replay-container">
+            <button className="replay-icon-button" onClick={replayVideo}>
+              <img src="assets/images/replayvid.png" alt="icon" className="icon-img" />
+              <span className="button-text">Replay</span>
+            </button>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              backgroundImage: "linear-gradient(#000000D8, transparent)",
+              flexDirection: "column",
+              position: "absolute",
+              bottom: "10vh",
+              left: 0,
+              right: 0,
+            }}
+          >
+            <p
+              style={{
+                fontWeight: "700",
+                textAlign: "center",
+                padding: "0px 5px 0px 5px",
+                color: "white",
+              }}
+            >
+              {videoArray[videoIndex.current].question}
+            </p>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                gap: "10%",
+              }}
+            >
+              <button type="button" className="btn btn-2 btn-2b">
+                {videoArray[videoIndex.current].yes}
+              </button>
+              <button type="button" className="btn btn-2 btn-2b">
+                {videoArray[videoIndex.current].no}
+              </button>
+            </div>
+          </div>
+        </>
       ) : (
         <p>Loading...</p> // Handle case where data is not yet available}
       )}
