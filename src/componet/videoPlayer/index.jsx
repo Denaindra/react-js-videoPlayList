@@ -50,7 +50,7 @@ export default function VideoPlayer() {
     }
   };
  const replayVideo = () =>{
-   setPlaying(false); // Set playing state to false when paused
+   //setPlaying(false); // Set playing state to false when paused
     playerRef.current.seekTo(0); // Seek to the start
     setPlaying(true); // Set playing state back to true to replay
  }
@@ -72,6 +72,10 @@ export default function VideoPlayer() {
             onError={(e) => console.log("onError [ReactPlayer]", e)}
             onProgress={onProgressHandler}
           />
+           <div className="score-Results">
+              <label>Score 230</label>
+          </div>
+
           <div className="replay-container">
             <button className="replay-icon-button" onClick={replayVideo}>
               <img src="assets/images/replayvid.png" alt="icon" className="icon-img" />

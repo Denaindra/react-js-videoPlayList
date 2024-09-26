@@ -29,3 +29,14 @@
     align-items: center;
     width: 100%;
   }
+
+  .score-Results {
+    position: absolute;
+    top: 10px; /* Adjust this value to control how far from the top */
+    right: 5%;
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+    color: white;
+    font-size: 15px;
+  }
