@@ -55,6 +55,10 @@ export default function VideoPlayer() {
     setPlaying(true); // Set playing state back to true to replay
  }
 
+ const onEnded = () =>{
+  alert("hi")
+}
+
  
   return (
     <div>
@@ -71,6 +75,8 @@ export default function VideoPlayer() {
             muted={true}
             onError={(e) => console.log("onError [ReactPlayer]", e)}
             onProgress={onProgressHandler}
+            playsinline={true}
+            onEnded={onEnded}
           />
            <div className="score-Results">
               <label>Score 230</label>
