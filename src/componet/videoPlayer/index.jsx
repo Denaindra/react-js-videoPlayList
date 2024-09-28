@@ -61,6 +61,12 @@ export default function VideoPlayer() {
   alert("hi")
 }
 
+const videoControlBtnClick = (id) =>{
+ if(id == videoArray[videoIndex.current].correctAnzwer) {
+  alert("it's correct !!")
+ }
+ setPlaying(true);
+}
  
   return (
     <div>
@@ -121,10 +127,10 @@ export default function VideoPlayer() {
                 gap: "10%",
               }}
             >
-              <button type="button" className="btn btn-2 btn-2b">
+              <button onClick={() => videoControlBtnClick(1)} type="button" className="btn btn-2 btn-2b">
                 {videoArray[videoIndex.current].yes}
               </button>
-              <button type="button" className="btn btn-2 btn-2b">
+              <button onClick={() => videoControlBtnClick(2)} type="button" className="btn btn-2 btn-2b">
                 {videoArray[videoIndex.current].no}
               </button>
             </div>
