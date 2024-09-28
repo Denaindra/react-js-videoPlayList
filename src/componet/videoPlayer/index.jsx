@@ -11,6 +11,7 @@ export default function VideoPlayer() {
   const playerRef = useRef(null); // replay 
   const [videoArray, setVideoArray] = useState([]); // play and pause the video
   const videoIndex = useRef(0);  // keep the video index
+  const palyFlag = useRef(true);  // keep the video index
 
   useEffect(() => {
     console.log("app loaded")
@@ -44,17 +45,27 @@ export default function VideoPlayer() {
       progress.loadedSeconds
     ); // Percentage of video played
 
-    const currentTimeInMilliseconds = progress.playedSeconds * 1000;
-    if (currentTimeInMilliseconds >= (videoArray[videoIndex.current].pauseIndex * 1000)) {
-        // 6s is the place that questions is comming
-        setPlaying(false);
-      }
+    if(palyFlag.current) {
+      pauseVideoForDisplayQuestion(progress.playedSeconds)
+    }
   };
   
+const pauseVideoForDisplayQuestion = (playedSeconds) =>{
+  const currentTimeInMilliseconds = playedSeconds * 1000;
+  if (currentTimeInMilliseconds >= (videoArray[videoIndex.current].pauseIndex * 1000)) {
+      // 6s is the place that questions is comming
+      setPlaying(false);
+      palyFlag.current = false;
+    }
+}
+
+
  const replayVideo = () =>{
+  palyFlag.current = true;
    //setPlaying(false); // Set playing state to false when paused
     playerRef.current.seekTo(0); // Seek to the start
     setPlaying(true); // Set playing state back to true to replay
+    palyFlag.current = true;
  }
 
  const onEnded = () =>{
