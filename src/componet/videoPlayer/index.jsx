@@ -44,11 +44,13 @@ export default function VideoPlayer() {
       progress.loadedSeconds
     ); // Percentage of video played
 
-    if (progress.playedSeconds > videoArray[videoIndex.current].pauseIndex) {
-      // 6s is the place that questions is comming
-      setPlaying(false);
-    }
+    const currentTimeInMilliseconds = progress.playedSeconds * 1000;
+    if (currentTimeInMilliseconds >= (videoArray[videoIndex.current].pauseIndex * 1000)) {
+        // 6s is the place that questions is comming
+        setPlaying(false);
+      }
   };
+  
  const replayVideo = () =>{
    //setPlaying(false); // Set playing state to false when paused
     playerRef.current.seekTo(0); // Seek to the start
@@ -75,6 +77,7 @@ export default function VideoPlayer() {
             muted={true}
             onError={(e) => console.log("onError [ReactPlayer]", e)}
             onProgress={onProgressHandler}
+            progressInterval={100}
             playsinline={true}
             onEnded={onEnded}
           />
