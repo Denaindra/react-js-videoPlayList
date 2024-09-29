@@ -34,7 +34,7 @@
 		"yes": "LBW",
         "no":"Blowed",
         "Id":3,
-        "correctAnzwer":2,
+        "correctAnzwer":1,
         "question":"Is this LBW or Blowed?",
         "videoId":"0919.mov",
         "pauseIndex":3.9

@@ -3,18 +3,17 @@ import ReactPlayer from "react-player";
 import "./videoPlayer.css";
 import "./videobuttonSets.css";
 import "./replayIconSets.css";
-
 import { GetVideoListItems } from "../helperFunction/filehandler";
 
 export default function VideoPlayer() {
   const [playing, setPlaying] = useState(true); // play and pause the video
   const playerRef = useRef(null); // replay 
   const [videoArray, setVideoArray] = useState([]); // play and pause the video
-  const videoIndex = useRef(0);  // keep the video index
-  const palyFlag = useRef(true);  // keep the video index
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [muteVideo, setmuteVideo] = useState(true);
+  const palyFlag = useRef(true);  // keep the paying video
 
   useEffect(() => {
-    console.log("app loaded")
     // Disable scrolling when the component is mounted
     document.body.style.overflow = "hidden";
     async function fetchMeetings() {
@@ -30,20 +29,21 @@ export default function VideoPlayer() {
       // Enable scrolling when the component is unmounted
       document.body.style.overflow = "auto";
       fetchMeetings();
+      
     };
   }, []);
 
   const onProgressHandler = (progress) => {
-    console.log(
-      "IsPlaying: ",
-      playing,
-      " Played: ",
-      progress.played,
-      " Played Seconds:",
-      progress.playedSeconds,
-      " Loaded Seconds:",
-      progress.loadedSeconds
-    ); // Percentage of video played
+    // console.log(
+    //   "IsPlaying: ",
+    //   playing,
+    //   " Played: ",
+    //   progress.played,
+    //   " Played Seconds:",
+    //   progress.playedSeconds,
+    //   " Loaded Seconds:",
+    //   progress.loadedSeconds
+    // ); // Percentage of video played
 
     if(palyFlag.current) {
       pauseVideoForDisplayQuestion(progress.playedSeconds)
@@ -52,29 +52,42 @@ export default function VideoPlayer() {
   
 const pauseVideoForDisplayQuestion = (playedSeconds) =>{
   const currentTimeInMilliseconds = playedSeconds * 1000;
-  if (currentTimeInMilliseconds >= (videoArray[videoIndex.current].pauseIndex * 1000)) {
+  if (currentTimeInMilliseconds >= (videoArray[currentVideoIndex].pauseIndex * 1000)) {
       // 6s is the place that questions is comming
       setPlaying(false);
       palyFlag.current = false;
+      console.log("video pause");
     }
 }
 
 
  const replayVideo = () =>{
-  palyFlag.current = true;
+   palyFlag.current = true;
    //setPlaying(false); // Set playing state to false when paused
     playerRef.current.seekTo(0); // Seek to the start
     setPlaying(true); // Set playing state back to true to replay
-    palyFlag.current = true;
  }
 
  const onEnded = () =>{
-  alert("hi")
+  //alert("hi")
+  palyFlag.current = true;
+  console.log(currentVideoIndex,"-",videoArray.length);
+  if(currentVideoIndex === (videoArray.length-1)){
+    setPlaying(false);
+  }
+  else{
+    setCurrentVideoIndex((prevIndex) =>
+      prevIndex + 1
+    );
+  }
+
 }
 
 const videoControlBtnClick = (id) =>{
- if(id == videoArray[videoIndex.current].correctAnzwer) {
+ if(id === videoArray[currentVideoIndex].correctAnzwer) {
   alert("it's correct !!")
+ }else{
+  alert("it's not correct !!")
  }
  setPlaying(true);
 }
@@ -84,14 +97,14 @@ const videoControlBtnClick = (id) =>{
       {(videoArray !== "undefined") & (videoArray.length > 0) ? (
         <>
           <ReactPlayer
-            url={"assets/videoAssets/" + videoArray[videoIndex.current].videoId}
+            url={"assets/videoAssets/" + videoArray[currentVideoIndex].videoId}
             ref={playerRef}
             controls={false}
             height="100vh"
             width="100vw"
             className="react-player"
             playing={playing} //deafult it's false
-            muted={true}
+            muted={false}
             onError={(e) => console.log("onError [ReactPlayer]", e)}
             onProgress={onProgressHandler}
             progressInterval={100}
@@ -128,7 +141,7 @@ const videoControlBtnClick = (id) =>{
                 color: "white",
               }}
             >
-              {videoArray[videoIndex.current].question}
+              {videoArray[currentVideoIndex].question}
             </p>
             <div
               style={{
@@ -139,10 +152,10 @@ const videoControlBtnClick = (id) =>{
               }}
             >
               <button onClick={() => videoControlBtnClick(1)} type="button" className="btn btn-2 btn-2b">
-                {videoArray[videoIndex.current].yes}
+                {videoArray[currentVideoIndex].yes}
               </button>
               <button onClick={() => videoControlBtnClick(2)} type="button" className="btn btn-2 btn-2b">
-                {videoArray[videoIndex.current].no}
+                {videoArray[currentVideoIndex].no}
               </button>
             </div>
           </div>
