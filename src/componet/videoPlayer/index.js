@@ -4,10 +4,12 @@ import { CSSTransition } from 'react-transition-group';
 import './VideoPlayer.css'; // Import the CSS file for animation
 
 const videoList = [
-  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
-  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
-  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4'
+  'assets/0916.mov',
+  'assets/0917.mov',
+  'assets/0918.mov',
+  'assets/0919.mov',
+  'assets/0920.mov',
+  'assets/0921.mov'
 ];
 export default function VideoPlayer() {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
