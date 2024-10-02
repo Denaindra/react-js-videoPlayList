@@ -6,12 +6,12 @@ import "./replayIconSets.css";
 import { GetVideoListItems } from "../helperFunction/filehandler";
 
 export default function VideoPlayer() {
-  const [playing, setPlaying] = useState(true); // play and pause the video
+  const palyFlag = useRef(true);  // keep the paying video
   const playerRef = useRef(null); // replay 
+  const startPlayButton = useRef(true); // replay 
+  const [playing, setPlaying] = useState(false); // play and pause the video
   const [videoArray, setVideoArray] = useState([]); // play and pause the video
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const [muteVideo, setmuteVideo] = useState(true);
-  const palyFlag = useRef(true);  // keep the paying video
 
   useEffect(() => {
     // Disable scrolling when the component is mounted
@@ -83,6 +83,11 @@ const pauseVideoForDisplayQuestion = (playedSeconds) =>{
 
 }
 
+  const startPlay = () => {
+    startPlayButton.current = false;
+    setPlaying(true);
+  }
+
 const videoControlBtnClick = (id) =>{
  if(id === videoArray[currentVideoIndex].correctAnzwer) {
   alert("it's correct !!")
@@ -121,7 +126,20 @@ const videoControlBtnClick = (id) =>{
               <span className="button-text">Replay</span>
             </button>
           </div>
-
+          {startPlayButton.current &&
+            <div
+              style={{
+                position: "absolute",
+                left: "50%",
+                transform: "translateX(-50%)",
+                bottom: "50%",
+              }}
+            >
+              <button onClick={() => startPlay()} type="button" className="btn btn-2 btn-2b">
+                START PLAY
+              </button>
+            </div>
+          }
           <div
             style={{
               display: "flex",
