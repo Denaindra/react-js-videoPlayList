@@ -101,7 +101,7 @@ const videoControlBtnClick = (id) =>{
 }
  
   return (
-    <div className="video-container">
+    <div className="video-container" style={{backgroundColor:"black"}} >
        <CSSTransition
         in={showPlayer}
         timeout={500}
