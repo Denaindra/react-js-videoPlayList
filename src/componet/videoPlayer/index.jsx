@@ -3,7 +3,9 @@ import ReactPlayer from "react-player";
 import "./videoPlayer.css";
 import "./videobuttonSets.css";
 import "./replayIconSets.css";
+import "./animation.css";
 import { GetVideoListItems } from "../helperFunction/filehandler";
+import { CSSTransition } from 'react-transition-group';
 
 export default function VideoPlayer() {
   const palyFlag = useRef(true);  // keep the paying video
@@ -12,6 +14,8 @@ export default function VideoPlayer() {
   const [playing, setPlaying] = useState(false); // play and pause the video
   const [videoArray, setVideoArray] = useState([]); // play and pause the video
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [showPlayer, setShowPlayer] = useState(true);
+  const nodeRef = useRef(null); // Ref for the player container inside CSSTransition
 
   useEffect(() => {
     // Disable scrolling when the component is mounted
@@ -68,20 +72,19 @@ const pauseVideoForDisplayQuestion = (playedSeconds) =>{
     setPlaying(true); // Set playing state back to true to replay
  }
 
- const onEnded = () =>{
-  //alert("hi")
-  palyFlag.current = true;
-  console.log(currentVideoIndex,"-",videoArray.length);
-  if(currentVideoIndex === (videoArray.length-1)){
-    setPlaying(false);
-  }
-  else{
-    setCurrentVideoIndex((prevIndex) =>
-      prevIndex + 1
-    );
-  }
-
-}
+ const onEnded = () => {
+   setShowPlayer(false);
+   palyFlag.current = true;
+   if (currentVideoIndex === videoArray.length - 1) {
+     setShowPlayer(true);
+     setPlaying(false);
+   } else {
+     setTimeout(() => {
+       setShowPlayer(true); // Trigger enter animation
+     }, 500); // Matches the duration of the exit animation
+     setCurrentVideoIndex((prevIndex) => prevIndex + 1);
+   }
+ };
 
   const startPlay = () => {
     startPlayButton.current = false;
@@ -98,7 +101,15 @@ const videoControlBtnClick = (id) =>{
 }
  
   return (
-    <div>
+    <div className="video-container">
+       <CSSTransition
+        in={showPlayer}
+        timeout={500}
+        nodeRef={nodeRef}
+        classNames="video-slide"
+        unmountOnExit
+      >
+        <div ref={nodeRef}>
       {(videoArray !== "undefined") & (videoArray.length > 0) ? (
         <>
           <ReactPlayer
@@ -181,6 +192,8 @@ const videoControlBtnClick = (id) =>{
       ) : (
         <p>Loading...</p> // Handle case where data is not yet available}
       )}
+       </div>
+       </CSSTransition>
     </div>
   );
 }

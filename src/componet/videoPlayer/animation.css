@@ -1,0 +1,23 @@
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; /* Ensures content outside the container is hidden */
+  }
+  
+  /* CSS for slide up/down transitions */
+  .video-slide-enter {
+    transform: translateY(100%); /* Start from below the screen Chnage this to vertical up and down direction*/
+  }
+  .video-slide-enter-active {
+    transform: translateY(0); /* Slide into place */
+    transition: transform 500ms ease-in-out;
+  }
+  .video-slide-exit {
+    transform: translateY(0); /* Start from current position */
+  }
+  .video-slide-exit-active {
+    transform: translateY(-100%); /* Slide upwards and exit Chnage this to vertical up and down direction */
+    transition: transform 500ms ease-in-out;
+  }
+  
