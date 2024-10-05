@@ -16,6 +16,7 @@ export default function VideoPlayer() {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [showPlayer, setShowPlayer] = useState(true);
   const nodeRef = useRef(null); // Ref for the player container inside CSSTransition
+  const [showInputs, setShowInputs] = useState(false);
 
   useEffect(() => {
     // Disable scrolling when the component is mounted
@@ -61,6 +62,7 @@ const pauseVideoForDisplayQuestion = (playedSeconds) =>{
       setPlaying(false);
       palyFlag.current = false;
       console.log("video pause");
+      setShowInputs(true);
     }
 }
 
@@ -92,10 +94,11 @@ const pauseVideoForDisplayQuestion = (playedSeconds) =>{
   }
 
 const videoControlBtnClick = (id) =>{
+  setShowInputs(false);
  if(id === videoArray[currentVideoIndex].correctAnzwer) {
-  alert("it's correct !!")
+  //alert("it's correct !!")
  }else{
-  alert("it's not correct !!")
+  //alert("it's not correct !!")
  }
  setPlaying(true);
 }
@@ -130,13 +133,14 @@ const videoControlBtnClick = (id) =>{
            <div className="score-Results">
               <label>Score 230</label>
           </div>
-
-          <div className="replay-container">
+  {showInputs && (
+          <div className="replay-container animate-slide-in">
             <button className="replay-icon-button" onClick={replayVideo}>
               <img src="assets/images/replayvid.png" alt="icon" className="icon-img" />
               <span className="button-text">Replay</span>
             </button>
           </div>
+  )}
           {startPlayButton.current &&
             <div
               style={{
@@ -151,17 +155,8 @@ const videoControlBtnClick = (id) =>{
               </button>
             </div>
           }
-          <div
-            style={{
-              display: "flex",
-              backgroundImage: "linear-gradient(#000000D8, transparent)",
-              flexDirection: "column",
-              position: "absolute",
-              bottom: "10vh",
-              left: 0,
-              right: 0,
-            }}
-          >
+         {showInputs && ( 
+          <div className="questionSection animate-slide-bottom2Top">
             <p
               style={{
                 fontWeight: "700",
@@ -172,14 +167,7 @@ const videoControlBtnClick = (id) =>{
             >
               {videoArray[currentVideoIndex].question}
             </p>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-                gap: "10%",
-              }}
-            >
+            <div className="buttonSection">
               <button onClick={() => videoControlBtnClick(1)} type="button" className="btn btn-2 btn-2b">
                 {videoArray[currentVideoIndex].yes}
               </button>
@@ -188,6 +176,7 @@ const videoControlBtnClick = (id) =>{
               </button>
             </div>
           </div>
+        )}
         </>
       ) : (
         <p>Loading...</p> // Handle case where data is not yet available}
