@@ -30,11 +30,10 @@ export default function VideoPlayer() {
         console.log("onError [GetVideoListItems] ", err)
       } 
     }
+    fetchMeetings();
     return () => {
       // Enable scrolling when the component is unmounted
-      document.body.style.overflow = "auto";
-      fetchMeetings();
-      
+      document.body.style.overflow = "auto";     
     };
   }, []);
 
