@@ -77,8 +77,10 @@ const pauseVideoForDisplayQuestion = (playedSeconds) =>{
    setShowPlayer(false);
    palyFlag.current = true;
    if (currentVideoIndex === videoArray.length - 1) {
+     palyFlag.current = false;
      setShowPlayer(true);
      setPlaying(false);
+     setShowInputs(false);
    } else {
      setTimeout(() => {
        setShowPlayer(true); // Trigger enter animation
