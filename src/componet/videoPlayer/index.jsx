@@ -65,12 +65,12 @@ const pauseVideoForDisplayQuestion = (playedSeconds) =>{
     }
 }
 
-
  const replayVideo = () =>{
    palyFlag.current = true;
    //setPlaying(false); // Set playing state to false when paused
     playerRef.current.seekTo(0); // Seek to the start
     setPlaying(true); // Set playing state back to true to replay
+    setShowInputs(false);
  }
 
  const onEnded = () => {
