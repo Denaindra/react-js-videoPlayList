@@ -6,7 +6,7 @@
         "Id":0,
         "correctAnzwer":1,
         "question":"Player will be gone LBW or Bowled?",
-        "videoId":"0916.mov",
+        "videoId":"https://customer-30f9namox0zrm2rg.cloudflarestream.com/b12e7ee1b2bbf412c425524751e7720b/downloads/default.mp4",
         "pauseIndex":6.8
 	},
 	{
@@ -16,7 +16,7 @@
         "Id":1,
         "correctAnzwer":2,
         "question":"Player will be gone LBW or Caught?  ",
-        "videoId":"0917.mov",
+        "videoId":"https://customer-30f9namox0zrm2rg.cloudflarestream.com/7144bca1934cbc0af52ca82d681d5ad9/downloads/default.mp4",
         "pauseIndex":8.0
 	},
     {
@@ -26,7 +26,7 @@
         "Id":2,
         "correctAnzwer":2,
         "question":"Will it be a High catch or a Slip catch? ",
-        "videoId":"0918.mov",
+        "videoId":"https://customer-30f9namox0zrm2rg.cloudflarestream.com/6073252b1e29c5e74de9008a6b998aaa/downloads/default.mp4",
         "pauseIndex":4.8
 	},
     {
@@ -36,7 +36,7 @@
         "Id":3,
         "correctAnzwer":1,
         "question":"Is this LBW or Blowed?",
-        "videoId":"0919.mov",
+        "videoId":"https://customer-30f9namox0zrm2rg.cloudflarestream.com/1043ffd480180940a1799a490adf1514/downloads/default.mp4",
         "pauseIndex":3.9
 	},
     {
@@ -46,7 +46,7 @@
         "Id":4,
         "correctAnzwer":2,
         "question":"Is this 6 runs or a Slip catch?",
-        "videoId":"0920.mov",
+        "videoId":"https://customer-30f9namox0zrm2rg.cloudflarestream.com/4ed3036b9d37471c2ed0466f53833feb/downloads/default.mp4",
         "pauseIndex":4.8
 	},
     {
@@ -56,7 +56,7 @@
         "Id":5,
         "correctAnzwer":2,
         "question":"Is this LBW or High catch? ",
-        "videoId":"0921.mov",
+        "videoId":"https://customer-30f9namox0zrm2rg.cloudflarestream.com/a047b9241a7119936a7ebf717da79253/downloads/default.mp4",
         "pauseIndex":2.8
 	}
 ]

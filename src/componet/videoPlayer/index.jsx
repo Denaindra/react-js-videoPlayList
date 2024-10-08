@@ -117,7 +117,7 @@ const videoControlBtnClick = (id) =>{
       {(videoArray !== "undefined") & (videoArray.length > 0) ? (
         <>
           <ReactPlayer
-            url={"assets/videoAssets/" + videoArray[currentVideoIndex].videoId}
+            url={videoArray[currentVideoIndex].videoId}
             ref={playerRef}
             controls={false}
             height="100vh"
