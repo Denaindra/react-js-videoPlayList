@@ -75,7 +75,6 @@ const pauseVideoForDisplayQuestion = (playedSeconds) =>{
 
  const onEnded = () => {
    setShowPlayer(false);
-   palyFlag.current = true;
    if (currentVideoIndex === videoArray.length - 1) {
      palyFlag.current = false;
      setShowPlayer(true);
@@ -84,6 +83,7 @@ const pauseVideoForDisplayQuestion = (playedSeconds) =>{
    } else {
      setTimeout(() => {
        setShowPlayer(true); // Trigger enter animation
+       palyFlag.current = true;
      }, 500); // Matches the duration of the exit animation
      setCurrentVideoIndex((prevIndex) => prevIndex + 1);
    }
