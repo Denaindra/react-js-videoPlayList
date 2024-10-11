@@ -24,11 +24,13 @@
     position: absolute;
     top: 0px; /* Adjust this value to control how far from the top */
     left: 50%;
-    transform: translateX(-50%); /* This centers the div horizontally */
+    transform: translateX(-50%) translateZ(0); /* This centers the div horizontally */
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    z-index: 1000;
+    will-change: "transform, opacity",
   }
 
   .score-Results {

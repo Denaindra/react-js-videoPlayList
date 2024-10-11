@@ -147,8 +147,10 @@ const videoControlBtnClick = (id) =>{
               style={{
                 position: "absolute",
                 left: "50%",
-                transform: "translateX(-50%)",
+                transform: "translateX(-50%) translateZ(0)",
                 bottom: "50%",
+                zIndex: 1000,
+                willChange: "transform, opacity",
               }}
             >
               <button onClick={() => startPlay()} type="button" className="btn btn-2 btn-2b">
@@ -164,6 +166,8 @@ const videoControlBtnClick = (id) =>{
                 textAlign: "center",
                 padding: "0px 5px 0px 5px",
                 color: "white",
+                zIndex: 1000,
+                willChange: "transform, opacity",
               }}
             >
               {videoArray[currentVideoIndex].question}
