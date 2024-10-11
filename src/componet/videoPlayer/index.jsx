@@ -38,17 +38,6 @@ export default function VideoPlayer() {
   }, []);
 
   const onProgressHandler = (progress) => {
-    // console.log(
-    //   "IsPlaying: ",
-    //   playing,
-    //   " Played: ",
-    //   progress.played,
-    //   " Played Seconds:",
-    //   progress.playedSeconds,
-    //   " Loaded Seconds:",
-    //   progress.loadedSeconds
-    // ); // Percentage of video played
-
     if(palyFlag.current) {
       pauseVideoForDisplayQuestion(progress.playedSeconds)
     }
