@@ -64,19 +64,23 @@ const pauseVideoForDisplayQuestion = (playedSeconds) =>{
 
  const onEnded = () => {
    setShowPlayer(false);
-   if (currentVideoIndex === videoArray.length - 1) {
-     palyFlag.current = false;
-     setShowPlayer(true);
-     setPlaying(false);
-     setShowInputs(false);
-   } else {
-     setTimeout(() => {
-       setShowPlayer(true); // Trigger enter animation
-       palyFlag.current = true;
-     }, 500); // Matches the duration of the exit animation
-     setCurrentVideoIndex((prevIndex) => prevIndex + 1);
-   }
+   LoadAndPlayNextVideo();
  };
+
+ const LoadAndPlayNextVideo = () =>{
+  if (currentVideoIndex === videoArray.length - 1) {
+    palyFlag.current = false;
+    setShowPlayer(true);
+    setPlaying(false);
+    setShowInputs(false);
+  } else {
+    setTimeout(() => {
+      setShowPlayer(true); // Trigger enter animation
+      palyFlag.current = true;
+    }, 500); // Matches the duration of the exit animation
+    setCurrentVideoIndex((prevIndex) => prevIndex + 1);
+  }
+ }
 
   const startPlay = () => {
     startPlayButton.current = false;
@@ -120,6 +124,8 @@ const videoControlBtnClick = (id) =>{
             playing={playing} //deafult it's false
             muted={false}
             onError={(e) => console.log("onError [ReactPlayer]", e)}
+            onBuffer={()=> console.log("onBuffer [ReactPlayer]")}
+            onBufferEnd={()=> console.log("onBufferEnd [ReactPlayer]")}
             onProgress={onProgressHandler}
             progressInterval={100}
             playsinline={true}
