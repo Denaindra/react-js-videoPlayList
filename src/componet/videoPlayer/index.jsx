@@ -94,7 +94,13 @@ const videoControlBtnClick = (id) =>{
 }
  
   return (
-    <div className="video-container" style={{backgroundColor:"black"}} >
+    <> 
+    {(videoArray !== "undefined") & (videoArray.length > 0) ? (
+        <div className="video-container" style={{
+      backgroundImage:`url(${videoArray[currentVideoIndex].thumbnail})`, 
+      backgroundSize: "cover", 
+      backgroundPosition: "center"
+    }} >
        <CSSTransition
         in={showPlayer}
         timeout={500}
@@ -103,8 +109,7 @@ const videoControlBtnClick = (id) =>{
         unmountOnExit
       >
         <div ref={nodeRef}>
-      {(videoArray !== "undefined") & (videoArray.length > 0) ? (
-        <>
+
           <ReactPlayer
             url={videoArray[currentVideoIndex].videoId}
             ref={playerRef}
@@ -171,12 +176,14 @@ const videoControlBtnClick = (id) =>{
             </div>
           </div>
         )}
-        </>
-      ) : (
-        <p>Loading...</p> // Handle case where data is not yet available}
-      )}
        </div>
        </CSSTransition>
     </div>
+    ) : (
+      <p>Loading...</p> // Handle case where data is not yet available}
+    )}
+
+</>
+  
   );
 }
